@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+ul li {
+    list-style: none;
+    color: #fff;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1fr 6rem auto; /* Reduced footer height */
+    grid-template-areas: "main" "." "footer";
+    overflow-x: hidden;
+    background: #F5F7FA;
+    min-height: 100vh;
+    font-family: "Open Sans", sans-serif;
+}
+
+body .footer {
+    z-index: 1;
+    --footer-background: rgb(54, 10, 10);
+    display: grid;
+    position: relative;
+    grid-area: footer;
+    min-height: 6rem; /* Reduced footer height */
+}
+
+body .footer .bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.6rem; /* Further reduced height */
+    background: var(--footer-background);
+    filter: url("#blob");
+}
+
+body .footer .bubbles .bubble {
+    position: absolute;
+    left: var(--position, 50%);
+    background: var(--footer-background);
+    border-radius: 100%;
+    -webkit-animation: bubble-size var(--time, 2.5s) ease-in infinite var(--delay, 0s), bubble-move var(--time, 2.5s) ease-in infinite var(--delay, 0s); /* Adjusted time */
+    animation: bubble-size var(--time, 2.5s) ease-in infinite var(--delay, 0s), bubble-move var(--time, 2.5s) ease-in infinite var(--delay, 0s); /* Adjusted time */
+    transform: translate(-50%, 100%);
+}
+
+body .footer .content {
+    padding: 2rem 0.5rem 1rem; /* Reduced padding */
+    background: var(--footer-background);
+    z-index: 2;
+}
+
+.footer .content .container {
+    max-width: 720px; /* Slightly smaller max-width */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.75rem; /* Reduced gap */
+    color: #fff;
+}
+
+.content img {
+    height: 80px;
+}
+
+.content span {
+    font-size: .75rem; /* Kept same size */
+}
+
+.footer__links {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem; /* Reduced gap */
+    transition: all 150ms ease-out;
+    align-items: center;
+}
+
+.footer__links .footer__link {
+    transition: all 150ms ease-out;
+    display: inline-block;
+}
+
+.footer__link:hover:after {
+    width: 100%;
+}
+
+.footer__link:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 1px; /* Reduced height */
+    width: 0px;
+    background-color: #fff;
+    transition: width .25s ease-out;
+}
+
+.footer__socials {
+    justify-self: flex-end;
+}
+
+.footer__social {
+    font-size: 1rem; /* Kept same size */
+    margin-right: 1rem; /* Kept same margin */
+}
+
+.footer__social:hover {
+    opacity: 0.8;
+}
+
+.footer__copy {
+    text-align: center;
+    background: rgb(54, 10, 10);
+    font-size: .75rem; /* Kept same size */
+    color: #dcdcdc;
+    padding: 1.5rem 0 1rem; /* Reduced padding */
+}
+
+@-webkit-keyframes bubble-size {
+    0%,
+    75% {
+        width: var(--size, 2.5rem); /* Reduced size */
+        height: var(--size, 2.5rem); /* Reduced size */
+    }
+
+    100% {
+        width: 0rem;
+        height: 0rem;
+    }
+}
+
+@keyframes bubble-size {
+    0%,
+    75% {
+        width: var(--size, 2.5rem); /* Reduced size */
+        height: var(--size, 2.5rem); /* Reduced size */
+    }
+
+    100% {
+        width: 0rem;
+        height: 0rem;
+    }
+}
+
+@-webkit-keyframes bubble-move {
+    0% {
+        bottom: -2rem; /* Reduced position */
+    }
+
+    100% {
+        bottom: var(--distance, 5rem); /* Reduced distance */
+    }
+}
+
+@keyframes bubble-move {
+    0% {
+        bottom: -2rem; /* Reduced position */
+    }
+
+    100% {
+        bottom: var(--distance, 5rem); /* Reduced distance */
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .footer .content {
+        padding: 0 0.5rem; /* Reduced padding */
+    }
+
+    .footer .content .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content h2 {
+        font-size: 1.25rem; /* Adjusted font size */
+    }
+
+    .content span {
+        font-size: .7rem; /* Adjusted font size */
+    }
+
+    .footer__links {
+        flex-direction: column;
+        row-gap: 1rem; /* Adjusted gap */
+    }
+
+    .footer__socials {
+        justify-self: flex-start;
+    }
+}
+
+@media screen and (max-width: 567px) {
+    .footer .content .container {
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 1.5rem; /* Adjusted gap */
+    }
+}
